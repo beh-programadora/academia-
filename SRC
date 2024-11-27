@@ -1,0 +1,109 @@
+CREATE DATABASE IF NOT EXISTS academia ;
+USE academia;
+
+CREATE TABLE  IF NOT EXISTS alunos (
+id_aluno INT AUTO_INCREMENT PRIMARY KEY ,
+nome_aluno VARCHAR (100) ,
+data_nascimento_aluno DATE,
+genero_aluno VARCHAR (100) ,
+telefone_aluno VARCHAR (15) ,
+email_aluno VARCHAR (100) ,
+data_cadastro_aluno DATE 
+
+);
+
+
+INSERT INTO alunos ( nome_aluno , data_nascimento_aluno , genero_aluno , telefone_aluno , email_aluno , data_cadastro_aluno )
+VALUES 
+('julia' , 2000-06-30 , 'feminino' , 12357946058 , 'julia.alun@email.com' , 2024-10-25),
+('PAULO' , 1999-01-15 , 'masculino' , 452103697520 , 'PAULO.alun@EMAIL.COM' , 2024-04-30),
+('laura' , 2006-12-25 , 'feminino', 852103697412 , 'laura.alun@email.com' ,  2024-11-19),
+('lucas' , 1995-05-06 , 'masculino' , 498712036501 , 'lucas.alun@email.com', 2024-10-09),
+('melissa' , 2005-07-2020 , 'feminino' , 4852019785201 ,'melissa.alun@email.com',  2025-07-31);
+
+SELECT * FROM pagamentos  ;
+
+
+CREATE TABLE IF NOT EXISTS professores (
+id_professor INT AUTO_INCREMENT PRIMARY KEY ,
+nome_professor VARCHAR (100) ,
+especialidade_professor VARCHAR (255) ,
+telefone_professor decimal (10,2) ,
+email_professor VARCHAR (100)
+
+);
+
+INSERT INTO professores (nome_professor , especialidade_professor , telefone_professor , email_professor)
+VALUES
+('valéria', 'musculatura', 52489713024 , 'valéria.prof@email.com') ,
+('juliano' , 'biceps', 48963205721, 'juliano.prof@email.com' ),
+( 'mayara' , 'gluteo' , 47520136974, 'mayara.prof@email.com'),
+('lucas' , 'triceps' , 78521036974, 'lucas.prof@email.com');
+
+
+CREATE TABLE IF NOT EXISTS planos (
+id_plano INT AUTO_INCREMENT PRIMARY KEY ,
+tipo_plano VARCHAR (50) ,
+descricao_plano VARCHAR (255) ,
+preco_plano DECIMAL (10,2) ,
+duracao_meses decimal (10,2)
+
+);
+
+
+INSERT INTO planos (tipo_plano , descricao_plano , preco_plano , duracao_meses)
+VALUES 
+('básico' , 'treino sem personal' , 89.00 , 6) ,
+('médio' , 'treino com personal + aulas extras' , 109.00 , 10),
+('premium' , 'acompanhamento com o nutricionista', 250.00 , 12);
+
+
+
+CREATE TABLE IF NOT EXISTS treinos (
+id_treino INT AUTO_INCREMENT PRIMARY KEY , 
+id_aluno INT ,
+descricao_treino VARCHAR (255) ,
+data_inicio_treino DATE,
+data_fim_treino DATE
+
+);
+
+
+INSERT INTO treinos  ( descricao_treino , data_inicio_treino , data_fim_treino)
+VALUES
+('treino sem personal' , '2024-12-20' , '2026-05-10'),
+('acompanhamento com o nutricionista' , '2015-10-30' , '2024-07-18') ,
+('treino com personal + aulas extras' , '2010-01-15' , '2016-04-25');
+
+
+CREATE TABLE IF NOT EXISTS aulas (
+id_aula INT AUTO_INCREMENT PRIMARY KEY ,
+tipo_aula VARCHAR (20),
+id_professor INT ,
+horario_aula DATETIME ,
+capacidade_aulas VARCHAR (30)
+
+);
+
+INSERT INTO aulas (tipo_aula , horario_aulas ,capacidade_aulas)
+VALUES
+('musculatura', '14:30' , 20),
+('biceps' , '20:35' , 10 ),
+('triceps' , '10:45' , 30 ),
+('gluteo' , '05:15' , 25 );
+
+CREATE TABLE IF NOT EXISTS pagamentos (
+id_pagamento INT AUTO_INCREMENT PRIMARY KEY ,
+id_aluno INT ,
+id_plano INT,
+data_pagamento date ,
+valor_pago DECIMAL (10,2) ,
+forma_pagamento VARCHAR (10)
+
+);
+
+INSERT INTO pagamentos (data_pagamento , valor_pago , forma_pagamento) 
+VALUES 
+(2024-08-12 , 250.00 , 'pix') ,
+(2024-12-10 , 109.00 , 'crédito') ,
+(2024-04-23 , 89.00 , 'dinheiro') ;
